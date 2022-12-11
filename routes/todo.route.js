@@ -3,8 +3,17 @@ const {TodoModel} = require("../models/todo.model")
 const TodoRoute = express.Router();
 
 TodoRoute.get("/mytodos", async (req, res) => {
-    const todos = await TodoModel.find()
-    res.send({"todos":todos})
+    const token = req.headers?.authorization?.split(" ")[1]
+    
+        const decoded = jwt.verify(token, 'hush')
+        if(decoded){
+            const userID = decoded.userID
+            const todos = await TodoModel.find({ UserID: userID })
+            res.send({"todos":todos})
+        }
+        else {
+            res.send("not authorised")
+        }
 })
 
 TodoRoute.post("/create", async (req, res) => {
