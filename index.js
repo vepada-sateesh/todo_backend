@@ -3,10 +3,15 @@ const { TodoRoute } = require("./routes/todo.route");
 const { UserRoute } = require("./routes/user.route");
 const { connection } = require("./config/db");
 require("dotenv").config();
+var cors = require('cors')
 var jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(express.json());
+app.use(cors())
+app.use({
+  origin:"*"
+})
 
 app.use("/user", UserRoute);
 
