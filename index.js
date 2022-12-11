@@ -8,9 +8,9 @@ var jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(express.json());
-app.use({
+app.use(cors({
   origin:"*"
-})
+}))
 
 app.use("/user", UserRoute);
 
