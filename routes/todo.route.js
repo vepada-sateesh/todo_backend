@@ -4,8 +4,8 @@ const TodoRoute = express.Router();
 var jwt = require('jsonwebtoken');
 
 TodoRoute.get("/mytodos", async (req, res) => {
-    const token = req.headers?.authorization?.split(" ")[1]
-    
+   
+    let token = req.headers.authorization
         const decoded = jwt.verify(token, 'hush')
         if(decoded){
             const userID = decoded.userID
