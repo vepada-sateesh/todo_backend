@@ -4,11 +4,15 @@ const TodoRoute = express.Router();
 var jwt = require('jsonwebtoken');
 
 TodoRoute.get("/mytodos", async (req, res) => {
-   
+
     let token = req.headers.authorization
-        const decoded = jwt.verify(token, 'hush')
-        if(decoded){
-            const userID = decoded.userID
+    //console.log(token)
+    const decoded = jwt.verify(token, 'secret')
+    //console.log(decoded,"deco")
+    if (decoded) {
+            //console.log(decoded,"deco")
+            const userID = decoded.UserID
+            //console.log(userID,"see it")
             const todos = await TodoModel.find({ UserID: userID })
             res.send({"todos":todos})
         }
