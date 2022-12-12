@@ -34,7 +34,7 @@ TodoRoute.post("/create", async (req, res) => {
     }
 })
 
-TodoRoute.patch("/create/:todoID", async (req, res) => {
+TodoRoute.patch("/update/:todoID", async (req, res) => {
     let id = req.params.todoID
     let IDuser = req.body.UserID;
 
@@ -53,7 +53,8 @@ TodoRoute.patch("/create/:todoID", async (req, res) => {
         res.send({"error":"something went wrong please try agin.."})
     }
 })
-TodoRoute.delete("/create/:todoID", async (req, res) => {
+TodoRoute.delete("/delete/:todoID", async (req, res) => {
+    console.log("enter")
     let id = req.params.todoID
     let IDuser = req.body.UserID;
 
