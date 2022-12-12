@@ -35,6 +35,7 @@ TodoRoute.post("/create", async (req, res) => {
 })
 
 TodoRoute.patch("/update/:todoID", async (req, res) => {
+    console.log("enter")
     let id = req.params.todoID
     let IDuser = req.body.UserID;
 

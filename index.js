@@ -15,12 +15,15 @@ app.use(cors({
 app.use("/user", UserRoute);
 
 const auth = (req, res, next) => {
-    let token = req.headers.authorization
+
+  let token = req.headers.authorization
+  
     if (token) {
         try {
             var decoded = jwt.verify(token, 'secret');
             if (decoded) {
-                req.body.UserID = decoded.UserID;
+              req.body.UserID = decoded.UserID;
+              console.log("eizxt")
                 next()
             }
         } catch (error) {
